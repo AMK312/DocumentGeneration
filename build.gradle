@@ -1,21 +1,29 @@
 plugins {
-    id 'java'
+	id 'java'
+	id 'org.springframework.boot' version '3.1.2'
+	id 'io.spring.dependency-management' version '1.1.2'
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
+group = 'org.nisum'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    implementation 'org.freemarker:freemarker:2.3.31'
-    implementation 'org.xhtmlrenderer:flying-saucer-pdf-openpdf:9.1.22'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation("org.xhtmlrenderer:flying-saucer-pdf:9.1.22")
+	implementation 'org.thymeleaf:thymeleaf-spring5:3.0.12.RELEASE'
+	implementation 'com.lowagie:itext:2.1.7'
+	compileOnly("javax.servlet:servlet-api:2.5")
 }
 
-test {
-    useJUnitPlatform()
+tasks.named('test') {
+	useJUnitPlatform()
 }
